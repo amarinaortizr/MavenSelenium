@@ -13,11 +13,11 @@ public class AtLoginPage extends ClsBrowser{
 	String Password = "NewPassword!";
 	String UserNameTxt = "//input[@name='loginfmt']";
 	By UserNameTxt2 = By.name("loginfmt");
-	By UserNameTxt3 = By.name("loginfmt");
-	By UserNameTxt4 = By.name("loginfmt");
-	By UserNameTxt5 = By.name("loginfmt");
-	By UserNameTxt6 = By.name("loginfmt");
-	By UserNameTxt7 = By.name("loginfmt");
+	//By UserNameTxt3 = By.name("loginfmt");
+	//By UserNameTxt4 = By.name("loginfmt");
+	//By UserNameTxt5 = By.name("loginfmt");
+	//By UserNameTxt6 = By.name("loginfmt");
+	//By UserNameTxt7 = By.name("loginfmt");
 	String PasswordTxt = "//input[@id='passwordInput']";
 	String NextBtn = "//input[starts-with(@id, 'idSIButton')]";
 	String StartSessionBtn = "//span[@id='submitButton']"; 

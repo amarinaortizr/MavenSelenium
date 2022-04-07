@@ -3,6 +3,8 @@ package TestCases;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 
 import com.aventstack.extentreports.Status;
@@ -29,7 +31,7 @@ public class TestCase_Exec extends ClsBrowser
 	} 
 	
 	
-	
+	@Test
 	public void FirstTC()
 	{
 		try 
@@ -38,13 +40,16 @@ public class TestCase_Exec extends ClsBrowser
 			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "URL lodaded.", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Enter credentials.", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Start session.", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session.", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			ClsReport.fnLog(Status.PASS, "Test ended.", true);
 		}
 		catch(Exception e) 
 		{
@@ -53,22 +58,25 @@ public class TestCase_Exec extends ClsBrowser
 	}
 		
 		
-	
+	@Test
 	public void SecondTC()
 	{
 		try 
 		{
 			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
+			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "URL lodaded.", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Enter credentials.", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Start session.", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session.", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			ClsReport.fnLog(Status.PASS, "Test ended.", true);
 		}
 		catch (Exception e) 
 		{
@@ -76,22 +84,25 @@ public class TestCase_Exec extends ClsBrowser
 		}
 	}
 	
-	//@Test 
-	public void NewTest()
+	@Test 
+	public void ThirdTC()
 	{
 		try 
 		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
+			ClsReport.objTest = ClsReport.objExtent.createTest("Third Test");
+			URL = "https://positionsapp-uat.azurewebsites.net/#";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
+			ClsReport.fnLog(Status.PASS, "URL lodaded.", false);
 			AtLoginPage objLogin = new AtLoginPage();
 			objLogin.enterCredential();
+			ClsReport.fnLog(Status.PASS, "Enter credentials.", false);
 			objLogin.startSession();
+			ClsReport.fnLog(Status.PASS, "Start session.", false);
 			objLogin.keepSessionDialog();
+			ClsReport.fnLog(Status.PASS, "Keep session.", false);
 			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			ClsReport.fnLog(Status.PASS, "Test ended.", true);
 		}
 		catch (Exception e) 
 		{
@@ -108,11 +119,11 @@ public class TestCase_Exec extends ClsBrowser
 		ClsReport.fnCloseReport();
 	}
 
-	@After
+	/*@After
 	public void tearDown() 
 	{
 		CloseBrowser();
 		ClsReport.fnCloseReport();
-	}
+	}*/
 
 }

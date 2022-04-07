@@ -1,7 +1,5 @@
 package selenium;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Function;
@@ -32,7 +30,7 @@ public class ClsWebElements
     {
         try
         {
-        	ClsReport.fnLog(Status.INFORMATION, "Step - Get Web Element: " + by.toString(), false);
+        	ClsReport.fnLog(Status.INFO, "Step - Get Web Element: " + by.toString(), false);
             WebElement pobjElement = ClsBrowser.objDriver.findElement(by);
             ClsReport.fnLog(Status.PASS, "Step - The Web Element: " + by.toString() + " was found as expected.", false);
             return pobjElement;
@@ -148,13 +146,12 @@ public class ClsWebElements
     	{
     		return false;
     	}
-		
-    	return null;
+	
 	}
     
     public boolean SendKeys(final String pstrLocator, String pValue) 
     {
-    	return SendKeys(By.xpaths(pstrLocator), pValue);
+    	return SendKeys(By.xpath(pstrLocator), pValue);
     }
     
     

@@ -12,7 +12,7 @@ public class ClsBrowser extends ClsWebElements {
 	
 	
 	public static String BrowserName;
-	private static WebDriver objDriver;
+	public static WebDriver objDriver;
     public static WebDriverWait wait;
     
     
@@ -52,7 +52,7 @@ public class ClsBrowser extends ClsWebElements {
 
     public void CloseBrowser()
     {
-        objDriver.close();
+    	objDriver.close();
         objDriver.quit();
     }
 
