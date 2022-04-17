@@ -3,10 +3,15 @@ package TestCases;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.aventstack.extentreports.Status;
-import POM.AtLoginPage;
+import POM.AmazonLoginPage;
+import POM.HomePage;
+import POM.PromotionsPage;
 import selenium.ClsBrowser;
 import selenium.ClsReport;
 
@@ -29,22 +34,37 @@ public class TestCase_Exec extends ClsBrowser
 	} 
 	
 	
-	
+	@Test 
 	public void FirstTC()
 	{
 		try 
 		{
 			ClsReport.objTest = ClsReport.objExtent.createTest("First Test");
-			URL = "https://positionsapp-uat.azurewebsites.net/#";
+			URL = "https://www.amazon.com.mx/";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
+			HomePage objHomePage = new HomePage();
+			AmazonLoginPage objLogin = new AmazonLoginPage();
+			PromotionsPage objPromotionsPage = new PromotionsPage();
+			JavascriptExecutor js = (JavascriptExecutor)objDriver;
+			
+			objHomePage.goToLogInPage();
 			objLogin.enterCredential();
 			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			objLogin.skipAddNumberDialog();
+			objHomePage.verifyActiveSession();
+			objHomePage.goToPromotionsPage();
+			objPromotionsPage.promotionsPageLoaded();
+			objPromotionsPage.selectLightningDeals(js);
+			objPromotionsPage.ObtainListOfProducts(js);
+			ClsReport.fnLog(Status.INFO, "List with all the products in lightning deals provided by Amazon:", false);
+			
+			for (String s :objPromotionsPage.listOfProducts) {
+				ClsReport.fnLog(Status.INFO, s, false);
+			}
+			ClsReport.fnLog(Status.PASS, "Test ended successfully.", true);
+
+			
 		}
 		catch(Exception e) 
 		{
@@ -52,62 +72,9 @@ public class TestCase_Exec extends ClsBrowser
 		}
 	}
 		
-		
-	
-	public void SecondTC()
-	{
-		try 
-		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
-			NavigateToUrl(URL);
-			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
-			objLogin.enterCredential();
-			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
-		}
-		catch (Exception e) 
-		{
-			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
-		}
-	}
-	
-	//@Test 
-	public void NewTest()
-	{
-		try 
-		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
-			NavigateToUrl(URL);
-			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
-			objLogin.enterCredential();
-			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
-		}
-		catch (Exception e) 
-		{
-			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
-		}
-	}
-	
-	
-	
-	@After
-	public void tearDown() 
-	{
-		CloseBrowser();
-		ClsReport.fnCloseReport();
-	}
 
+	
+	
 	@After
 	public void tearDown() 
 	{
