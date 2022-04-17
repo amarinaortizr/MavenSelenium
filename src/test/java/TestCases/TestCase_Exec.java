@@ -57,6 +57,7 @@ public class TestCase_Exec extends ClsBrowser
 			objPromotionsPage.promotionsPageLoaded();
 			objPromotionsPage.selectLightningDeals(js);
 			objPromotionsPage.ObtainListOfProducts(js);
+			
 			ClsReport.fnLog(Status.INFO, "List with all the products in lightning deals provided by Amazon:", false);
 			
 			for (String s :objPromotionsPage.listOfProducts) {
