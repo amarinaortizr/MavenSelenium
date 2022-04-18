@@ -50,6 +50,7 @@ public class PromotionsPage extends ClsBrowser{
 			js.executeScript("arguments[0].scrollIntoView();", lightningDealsFilter);
 			WaitForElement(lightningDealsFilterAppliedLocator);
 			System.out.println("The lightning deals filter was applied");
+			Thread.sleep(3000);
 			
 		} catch (Exception e) {
 			System.out.println("the lightning deals filter was not applied");
