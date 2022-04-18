@@ -15,9 +15,9 @@ public class PromotionsPage extends ClsBrowser{
 	//Locators
 	By promotionsHeader = By.xpath("//span[contains(text(),'Promociones')]");
 	By lightningDealsBtn = By.xpath("//span[contains(text(),'Oferta relámpago')]");
-	By lightningDealsFilterAppliedLocator = By.xpath("//span[@class='a-text-bold' and contains(text(),'Oferta relámpago')]");//nota
-	By NumberOfPagesInLightningDealsLocator = By.xpath("(//li[@class='a-disabled'])[last()]");//nota funciona siempre aunque hayan 2 o menos
-	String namesOfTheProductsStringXpath = ("(//div[@class='DealContent-module__truncate_sWbxETx42ZPStTc9jwySW'])");//NOTA
+	By lightningDealsFilterAppliedLocator = By.xpath("//span[@class='a-text-bold' and contains(text(),'Oferta relámpago')]");//If this xpath is present, then the filter was applicated
+	By NumberOfPagesInLightningDealsLocator = By.xpath("(//li[@class='a-disabled'])[last()]");//Xpath to locate the current number of pages
+	String namesOfTheProductsStringXpath = ("(//div[@class='DealContent-module__truncate_sWbxETx42ZPStTc9jwySW'])");//xpath of the name of each product, it will be iterated as an array
 	By nextPageBtn = By.xpath("(//li[@class='a-last'])");
 	Integer numberOfProductsPerPage = 60;
 	
@@ -61,7 +61,7 @@ public class PromotionsPage extends ClsBrowser{
 	/*
 	 * obtains a list with all the products provided by Amazon in each page of lightning deals and put each in a list.
 	 */
-	public void ObtainListOfProducts(JavascriptExecutor js){
+	public void obtainListOfProducts(JavascriptExecutor js){
 		WaitForLoad();
 		WebElement NumberOfPagesInLightningDeals = objDriver.findElement(NumberOfPagesInLightningDealsLocator);
 		js.executeScript("arguments[0].scrollIntoView();",NumberOfPagesInLightningDeals);
