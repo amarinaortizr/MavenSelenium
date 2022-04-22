@@ -12,7 +12,7 @@ public class AccountCreatePage extends ClsBrowser{
 	//keys
 	static String firstName = "Test";
 	static String lastName = "Num";
-	static String email = "Testingfinal@mail.com";
+	static String email = "FinalTest@mail.com";
 	static String password = "password!";
 	
 	//Locators

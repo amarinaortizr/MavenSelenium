@@ -24,6 +24,7 @@ public class TestCase2_Exec extends ClsBrowser
 	@BeforeClass
 	public static void beforeClass() 
 	{
+		ClsReport.reportLocation ="C:\\Report\\Exercise3_Scenario2.html";
 		ClsReport.fnSetupReport();
 	}
 	
