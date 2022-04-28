@@ -3,10 +3,15 @@ package TestCases;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.aventstack.extentreports.Status;
-import POM.AtLoginPage;
+
+import POM.FlightPage;
+import POM.VolarisPage;
 import selenium.ClsBrowser;
 import selenium.ClsReport;
 
@@ -18,6 +23,7 @@ public class TestCase_Exec extends ClsBrowser
 	@BeforeClass
 	public static void beforeClass() 
 	{
+		ClsReport.reportLocation ="C:\\Report\\Exercise4.html";
 		ClsReport.fnSetupReport();
 	}
 	
@@ -26,25 +32,32 @@ public class TestCase_Exec extends ClsBrowser
 	{
 		ClsBrowser.BrowserName = "Chrome";
 		OpenBrowser();
-	} 
+	} 	
 	
-	
-	
+	@Test
 	public void FirstTC()
 	{
 		try 
 		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("First Test");
-			URL = "https://positionsapp-uat.azurewebsites.net/#";
+			ClsReport.objTest = ClsReport.objExtent.createTest("Test 1");
+			
+			URL = "https://www.volaris.com/";
 			NavigateToUrl(URL);
 			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
-			objLogin.enterCredential();
-			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
+			VolarisPage objVolarisPage = new VolarisPage();
+			FlightPage objFlightPage = new FlightPage();
+			JavascriptExecutor js = (JavascriptExecutor)objDriver;
+			
+			objVolarisPage.selectTypeOfTrip();
+			objVolarisPage.selectOriginAndDestinationCities();
+			objVolarisPage.selectGoingAndReturnDates();
+			objVolarisPage.searchFlights();
+			objFlightPage.selectCheapestGoingFlight();
+			objFlightPage.selectCheapestReturnFlight();
+			objFlightPage.confirmBaggage();
+			objFlightPage.getTotalAndCompareToBudget(js);
+			
+			
 		}
 		catch(Exception e) 
 		{
@@ -52,62 +65,7 @@ public class TestCase_Exec extends ClsBrowser
 		}
 	}
 		
-		
 	
-	public void SecondTC()
-	{
-		try 
-		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
-			NavigateToUrl(URL);
-			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
-			objLogin.enterCredential();
-			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
-		}
-		catch (Exception e) 
-		{
-			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
-		}
-	}
-	
-	//@Test 
-	public void NewTest()
-	{
-		try 
-		{
-			ClsReport.objTest = ClsReport.objExtent.createTest("Second Test");
-			URL = "https://xzfsadfsadfsdfpositionsapp-uat.azurewebsites.net/#";
-			NavigateToUrl(URL);
-			WaitForLoad();
-			ClsReport.fnLog(Status.PASS, "First Log Comment.", false);
-			AtLoginPage objLogin = new AtLoginPage();
-			objLogin.enterCredential();
-			objLogin.startSession();
-			objLogin.keepSessionDialog();
-			objLogin.verifyActiveSession();
-			ClsReport.fnLog(Status.PASS, "Second Log Comment.", true);
-		}
-		catch (Exception e) 
-		{
-			ClsReport.fnLog(Status.FAIL, "The: " + TC_Name.getMethodName() + " was not executed successfully. \n Exception: " + e.getMessage() , false);
-		}
-	}
-	
-	
-	
-	@After
-	public void tearDown() 
-	{
-		CloseBrowser();
-		ClsReport.fnCloseReport();
-	}
-
 	@After
 	public void tearDown() 
 	{
