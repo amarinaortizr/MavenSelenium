@@ -67,8 +67,6 @@ public class VolarisPage extends ClsBrowser{
 		Click(selectOriginCityBtn);
 		
 		ClsReport.fnLog(Status.INFO, "Selecting destination city as "+"'"+ destinationCity +"'", false);
-		//WaitForElementClickable(destinationCityBtn);
-		//Click(destinationCityBtn);
 		SendKeys(searchDestinationCityLocator, destinationCity);
 		WaitForElement(selectDestinationCityBtn);
 		WaitForElementClickableLong(selectDestinationCityBtn);
