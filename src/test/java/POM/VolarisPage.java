@@ -79,15 +79,15 @@ public class VolarisPage extends ClsBrowser{
 	public void selectGoingAndReturnDates() throws InterruptedException {
 		
 		ClsReport.fnLog(Status.INFO, "Selecting going month as "+ goingMonth, false);
-		WaitForElement(goingMonthSelector);
 		Thread.sleep(2000);
+		WaitForElement(goingMonthSelector);
 		WebElement objgoingMonth = getGetWebElement(goingMonthSelector);
 		Select goingMonthSelect = new Select(objgoingMonth);
 		goingMonthSelect.selectByVisibleText(goingMonth);
 		
 		ClsReport.fnLog(Status.INFO, "Selecting return month as " + returnMonth, false);
-		WaitForElement(returnMonthSelector);
 		Thread.sleep(2000);
+		WaitForElement(returnMonthSelector);
 		WebElement objReturnMonth = getGetWebElement(returnMonthSelector);
 		Select returnMonthSelect = new Select(objReturnMonth);
 		returnMonthSelect.selectByVisibleText(returnMonth);

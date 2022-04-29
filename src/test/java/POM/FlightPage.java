@@ -72,6 +72,8 @@ public class FlightPage extends ClsBrowser{
 		WaitForElementClickableLong(basicCheapestFlightBtn);
 		Thread.sleep(2000);
 		Click(basicCheapestFlightBtn);
+		
+		
 	}
 	
 	/*
@@ -111,9 +113,9 @@ public class FlightPage extends ClsBrowser{
 		ClsReport.fnLog(Status.INFO, "Comparing the total price with the budget", false);
 		
 		if(totalPrice>budget) {
-			ClsReport.fnLog(Status.FAIL, "The test fail because the total of round-trip cheapest flights is superior to the budget ($"+budget+"), the total was $"+totalPrice, true);
+			ClsReport.fnLog(Status.FAIL, "The test failed because the total of round-trip cheapest flights is superior to the budget ($"+budget+"), the total was $"+totalPrice, true);
 		}else {
-			ClsReport.fnLog(Status.PASS, "The total of round-trip cheapest flights is within budget ($"+budget+"), the total was $"+totalPrice, true);
+			ClsReport.fnLog(Status.PASS, "The test passed, the total of round-trip cheapest flights is within budget ($"+budget+"), the total was $"+totalPrice, true);
 		}
 	}
 }
