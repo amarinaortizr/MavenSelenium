@@ -28,19 +28,15 @@ public class VolarisPage extends ClsBrowser{
 	By searchOriginCityLocator = By.xpath("//input[@id='fnameOrigin']");
 	By selectOriginCityBtn = By.xpath("//div[@class='col-10 left-align' and contains(text(),'Guadalajara')]");
 	
-	//By destinationCityBtn = By.xpath("//span[contains(text(),'Destino')]");
 	By searchDestinationCityLocator = By.xpath("//input[@id='fnameDestination']");
 	By selectDestinationCityBtn = By.xpath("//div[@class='col-10 left-align' and contains(text(),'Cancún')]");
 	
-	//By goingDateFlightBtn = By.xpath("(//div[@class='mat-form-field-infix'])[1]");
 	By goingMonthSelector = By.xpath("(//select[@class='monthselect'])[1]");
 	By goingDayBtn = By.xpath("//td[@class='weekend datecell-20221029 customfare available']");
-	//try click
 	
-	//By returnDateFlightBtn = By.xpath("(//div[@class='mat-form-field-infix'])[2]");
 	By returnMonthSelector = By.xpath("(//select[@class='monthselect'])[2]");
 	By returnDayBtn = By.xpath("(//td[contains (@class,'datecell-20221104') and contains (@class,'available')])[2]");
-	//try click maybe is not available
+	
 	By submitDatesBtn = By.xpath("(//span[@class='mat-button-wrapper' and contains(text(),'Hecho')])[2]");
 	
 	By searchFlightsBtn = By.xpath("//span[@class='mat-button-wrapper' and contains(text(),'Buscar vuelos')]"); 
@@ -82,14 +78,18 @@ public class VolarisPage extends ClsBrowser{
 	/*
 	 * select going and return dates
 	 */
-	public void selectGoingAndReturnDates() {
+	public void selectGoingAndReturnDates() throws InterruptedException {
 		
 		ClsReport.fnLog(Status.INFO, "Selecting going month as "+ goingMonth, false);
+		WaitForElement(goingMonthSelector);
+		Thread.sleep(2000);
 		WebElement objgoingMonth = getGetWebElement(goingMonthSelector);
 		Select goingMonthSelect = new Select(objgoingMonth);
 		goingMonthSelect.selectByVisibleText(goingMonth);
 		
 		ClsReport.fnLog(Status.INFO, "Selecting return month as " + returnMonth, false);
+		WaitForElement(returnMonthSelector);
+		Thread.sleep(2000);
 		WebElement objReturnMonth = getGetWebElement(returnMonthSelector);
 		Select returnMonthSelect = new Select(objReturnMonth);
 		returnMonthSelect.selectByVisibleText(returnMonth);

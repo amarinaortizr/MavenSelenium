@@ -44,9 +44,10 @@ public class TestCase_Exec extends ClsBrowser
 			URL = "https://www.volaris.com/";
 			NavigateToUrl(URL);
 			WaitForLoad();
+			JavascriptExecutor js = (JavascriptExecutor)objDriver;
 			VolarisPage objVolarisPage = new VolarisPage();
 			FlightPage objFlightPage = new FlightPage();
-			JavascriptExecutor js = (JavascriptExecutor)objDriver;
+			
 			
 			objVolarisPage.selectTypeOfTrip();
 			objVolarisPage.selectOriginAndDestinationCities();

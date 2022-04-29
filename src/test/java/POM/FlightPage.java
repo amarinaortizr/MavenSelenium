@@ -18,12 +18,11 @@ public class FlightPage extends ClsBrowser{
 	By orderBySelector = By.xpath("//select");
 	
 	By cheapestFlightBtn = By.xpath("(//a[@class='panel-open ng-star-inserted'])[1]");
-	//By cheapestReturnFlightBtn = By.xpath("(//a[@class='panel-open ng-star-inserted'])[1]");
 	By basicCheapestFlightBtn = By.xpath("(//div[@class='d-none d-md-block price ng-star-inserted'])[1]");
 	
 	By additionalBaggageDialogHeader = By.xpath("//h5[contains(text(),'Agrega 10 kg extra en equipaje de mano')]");
 	By confirmBaggageBtn = By.xpath("//span[@class='mat-button-wrapper' and contains(text(),'Confirmar selección')]");
-	By totalPriceLocator = By.xpath("(//div[@class='col2'])[5]//child::div[2]"); //innertext comparar convertir a numero
+	By totalPriceLocator = By.xpath("(//div[@class='col2'])[5]//child::div[2]");
 	
 	
 	/*
@@ -40,16 +39,18 @@ public class FlightPage extends ClsBrowser{
 	/*
 	 * select the cheapest going flight 
 	 */
-	public void selectCheapestGoingFlight() {
+	public void selectCheapestGoingFlight() throws InterruptedException {
 		WaitForLoad();
 		selectByLowPrices();
 		
 		ClsReport.fnLog(Status.INFO, "Selecting the cheapest going flight" , false);
 		WaitForElementClickableLong(cheapestFlightBtn);
+		Thread.sleep(2000);
 		Click(cheapestFlightBtn);
 		
 		ClsReport.fnLog(Status.INFO, "Selecting basic for the going flight" , false);
 		WaitForElementClickableLong(basicCheapestFlightBtn);
+		Thread.sleep(2000);
 		Click(basicCheapestFlightBtn);		
 		
 		
@@ -64,11 +65,12 @@ public class FlightPage extends ClsBrowser{
 		
 		ClsReport.fnLog(Status.INFO, "Selecting the cheapest return flight" , false);
 		WaitForElementClickable(cheapestFlightBtn);
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		Click(cheapestFlightBtn);
 		
 		ClsReport.fnLog(Status.INFO, "Selecting basic for the return flight" , false);
 		WaitForElementClickableLong(basicCheapestFlightBtn);
+		Thread.sleep(2000);
 		Click(basicCheapestFlightBtn);
 	}
 	
@@ -85,7 +87,7 @@ public class FlightPage extends ClsBrowser{
 	/*
 	 * get the total price and compare to the budget, make the test fail if is not in the budget and pass if is in the budget
 	 */
-	public void getTotalAndCompareToBudget(JavascriptExecutor js) {
+	public void getTotalAndCompareToBudget(JavascriptExecutor js) throws InterruptedException {
 		WaitForLoad();
 		ClsReport.fnLog(Status.INFO, "Getting the flights total price", false);
 		
@@ -101,19 +103,17 @@ public class FlightPage extends ClsBrowser{
             	totalPriceString=totalPriceString+currentPrice.charAt(i);
             }
             	
-
         }
-        
-        
+
         Integer totalPrice = Integer.valueOf(totalPriceString);
 		Integer budget = 1500;
         
 		ClsReport.fnLog(Status.INFO, "Comparing the total price with the budget", false);
 		
 		if(totalPrice>budget) {
-			ClsReport.fnLog(Status.FAIL, "The total of round-trip cheapest flights is superior to the budget ($1500), the total was $"+totalPrice, true);
+			ClsReport.fnLog(Status.FAIL, "The total of round-trip cheapest flights is superior to the budget ($"+budget+"), the total was $"+totalPrice, true);
 		}else {
-			ClsReport.fnLog(Status.PASS, "The total of round-trip cheapest flights is within budget ($1500), the total was $"+totalPrice, true);
+			ClsReport.fnLog(Status.PASS, "The total of round-trip cheapest flights is within budget ($"+budget+"), the total was $"+totalPrice, true);
 		}
 	}
 }
